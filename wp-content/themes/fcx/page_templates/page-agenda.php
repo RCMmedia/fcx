@@ -29,14 +29,15 @@ get_header(); ?>
 				    <?php endwhile; ?>
 				<?php endif; ?>
 					</div>
-				<div class="agenda_testimonial">
-					<div class="left">
-						<?php the_field('agenda_testimonial'); ?>
-					</div>
-					<div class="right">
-						<img src="<?php the_field('testimonial_image'); ?>"/>
-					</div>
-				</div>
+					
+					<div class="agenda_testimonial">
+						<div class="left">
+							<?php the_field('agenda_testimonial'); ?>
+						</div><!-- .left -->
+						<div class="right">
+							<img src="<?php the_field('testimonial_image'); ?>"/>
+						</div><!-- .right -->
+					</div><!-- .agenda_testimonial -->
 
 				</div><!-- .inner -->
 				

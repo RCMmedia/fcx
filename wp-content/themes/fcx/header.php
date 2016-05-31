@@ -33,7 +33,11 @@
 <div id="content">
 	<div class="nav-wrap">
 		<div class="logo">
-			<a href="<?php bloginfo('url') ?>"><img src="<?php bloginfo('template_url') ?>/images/logo-sm.png" alt="logo-sm" width="382" height="34"></a>
+			<a href="<?php bloginfo('url') ?>">
+				<img class="logo-big" src="<?php bloginfo('template_url') ?>/images/logo-sm.png" alt="logo-sm" width="382" height="34">
+				<img class="logo-small" src="<?php bloginfo('template_url') ?>/images/logo-mobile.png" alt="logo-mobile" >
+				
+			</a>
 		</div>
 		<div id="nav-icon">
 		  <span></span>

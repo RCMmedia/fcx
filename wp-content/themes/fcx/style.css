@@ -20,6 +20,9 @@ input[type=submit]:focus,input[type=button]:focus{outline:none}
 sup{font-family:Arial;font-size:60%;vertical-align:top}
 body{line-height:1.3;font-family:sans-serif;font-size:16px;font-family: 'Montserrat', sans-serif;color: #403c3c}
 a {text-decoration: none;}
+p {
+  margin-bottom: 20px;
+}
 body.admin-bar #sidebar,body.admin-bar .nav-wrap.fixed {top:32px}
 
 .alignleft,
@@ -65,7 +68,7 @@ body.home .nav-wrap.fixed .logo {
 	opacity: 1;
 }
 .nav-wrap {
-  height: 60px;
+  height: 65px;
   position: relative;
   z-index: 100;
 }
@@ -76,6 +79,7 @@ body.home .nav-wrap.fixed .logo {
   position: absolute;
 /*   transition: all 0.3s ease-in-out 0s; */
 }
+.nav-wrap .logo-small {display: none;}
 .nav-wrap.fixed .logo {
   display: inline-block;
   opacity: 1;
@@ -167,6 +171,7 @@ body.home .nav-wrap.fixed .logo {
   position: relative;
   z-index: 99;
 }
+body.page-template-page-private .header-wrap {display: none}
 .header {
   background: rgba(0, 0, 0, 0) url("images/banner-home2.jpg") repeat scroll 0 0 / cover ;
   text-align: center;
@@ -382,10 +387,79 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7b1d1a', end
   margin-bottom: 20px;
 }
 
-
-
+.register-wrap {
+  text-align: center;
+}
+.register-wrap h3 {
+  color: #7d1a0f;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.register-wrap .phone, .register-wrap .email {
+  color: #000;
+  display: block;
+  margin-bottom: 10px;
+}
+.register-wrap p {
+  margin-bottom: 10px;
+}
 
 .footer {
   padding: 10px;
   text-align: center;
+}
+
+
+
+/* Media queries */
+@media screen and (max-width: 700px) {
+	body.admin-bar #sidebar,body.admin-bar .nav-wrap.fixed {top:0px}
+.logo-big {
+  height: auto;
+  padding-right: 100px;
+  width: 100%;
+}
+#content {
+  margin-left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+body.admin-bar #sidebar {top: 0}
+#sidebar {
+  background: transparent none repeat scroll 0 0;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  width: 240px;
+}
+#sidebar span,#sidebar .event-email a, #sidebar .event-phonenumber a {color: #000}
+.event-date,.event-location,.event-privacy,.event-phonenumber,.event-email {color: #000}
+
+.aboutus {
+  line-height: 1.3;
+  margin: 25px auto;
+  max-width: 525px;
+}
+
+
+}
+
+@media screen and (max-width: 500px) {
+	.logo-big {
+  display: none;
+}
+.logo-small {
+  display: block;
+}
+	.page_link {width: 100%}
+	.nav-wrap.fixed #nav-icon {
+  float: right;
+  margin-right: 10px;
+  position: relative;
+}
+	
 }
