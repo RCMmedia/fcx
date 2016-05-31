@@ -1,0 +1,391 @@
+/*
+Theme Name: FCX
+Author: the RCM team
+Author URI: https://rcm.media/
+Version: 1
+License: Private
+*/
+
+
+/* Reset CSS */
+*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}
+blockquote,q{quotes:none}
+:focus{outline:0}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+input[type=submit]:focus,input[type=button]:focus{outline:none}
+sup{font-family:Arial;font-size:60%;vertical-align:top}
+body{line-height:1.3;font-family:sans-serif;font-size:16px;font-family: 'Montserrat', sans-serif;color: #403c3c}
+a {text-decoration: none;}
+body.admin-bar #sidebar,body.admin-bar .nav-wrap.fixed {top:32px}
+
+.alignleft,
+img.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 24px;
+	margin-top: 4px;
+}
+.alignright,
+img.alignright {
+	display: inline;
+	float: right;
+	margin-left: 24px;
+	margin-top: 4px;
+}
+.aligncenter,
+img.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+img.alignleft,
+img.alignright,
+img.aligncenter {
+	margin-bottom: 12px;
+}
+/* Main Styles */
+body.home .nav-wrap {
+  height: 0;
+}
+body.home .nav-wrap.fixed {
+  height: inherit;
+}
+body.home #nav-icon span {
+	background: #fff;
+}
+body.home .nav-wrap .logo {
+	opacity: 0;
+}
+body.home .nav-wrap.fixed .logo {
+	opacity: 1;
+}
+.nav-wrap {
+  height: 60px;
+  position: relative;
+  z-index: 100;
+}
+.nav-wrap .logo {
+  margin-left: 20px;
+  margin-top: 15px;
+  opacity: 1;
+  position: absolute;
+/*   transition: all 0.3s ease-in-out 0s; */
+}
+.nav-wrap.fixed .logo {
+  display: inline-block;
+  opacity: 1;
+  transition: all 0.3s ease-in-out 0s;
+}
+.nav-wrap.fixed {
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  height: 65px;
+  position: fixed;
+  width: 100%;
+  top:0px;
+  transition: all 0.3s ease-in-out 0s;
+}
+.nav-wrap.fixed #nav-icon {
+  float: right;
+  margin-right: 255px;
+  position: relative;
+}
+.nav-wrap.fixed #nav-icon span {
+  background: #000 none repeat scroll 0 0;
+}
+#nav-icon {
+  cursor: pointer;
+  height: 35px;
+  margin: 15px;
+  position: absolute;
+  right: 0;
+  transform: rotate(0deg);
+  transition: all 0.5s ease-in-out 0s;
+  width: 60px;
+}
+#nav-icon span {
+  background: #000 none repeat scroll 0 0;
+  border-radius: 2px;
+  display: block;
+  height: 7px;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
+  transition: all 0.25s ease-in-out 0s;
+  width: 100%;
+}
+#nav-icon span:nth-child(1){top:0}
+#nav-icon span:nth-child(2){top:13px}
+#nav-icon span:nth-child(3){top:26px}
+#nav-icon.open span:nth-child(1){top:18px;-webkit-transform:rotate(135deg);-moz-transform:rotate(135deg);-o-transform:rotate(135deg);transform:rotate(135deg)}
+#nav-icon.open span:nth-child(2){opacity:0;left:-60px}
+#nav-icon.open span:nth-child(3){top:18px;-webkit-transform:rotate(-135deg);-moz-transform:rotate(-135deg);-o-transform:rotate(-135deg);transform:rotate(-135deg)}
+
+
+
+#content {
+  margin-left: 240px;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#sidebar {
+  background: rgba(0, 0, 0, 0) url("images/bg-sidebar.jpg") repeat scroll 0 0 / cover ;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 240px;
+  text-align: center
+}
+#sidebar span {
+  color: #fff;
+  display: block;
+  margin-bottom: 20px;
+}
+#sidebar a {
+  color: #fff;
+}
+.event-date {
+  color: #fff;
+  font-size: 17px;
+  margin-bottom: 20px
+}
+
+.event-email {font-size: 11px}
+.header-wrap {
+  position: relative;
+  z-index: 99;
+}
+.header-wrap {
+  position: relative;
+  z-index: 99;
+}
+.header {
+  background: rgba(0, 0, 0, 0) url("images/banner-home2.jpg") repeat scroll 0 0 / cover ;
+  text-align: center;
+}
+.header > img {
+  height: auto;
+  padding: 11% 24%;
+  width: 100%;
+}
+.page_title {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#671e19+0,671e19+54,000000+100&1+0,1+30,0+100 */
+background: -moz-linear-gradient(left,  rgba(103,30,25,1) 0%, rgba(103,30,25,1) 30%, rgba(103,30,25,0.66) 54%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(103,30,25,1) 0%,rgba(103,30,25,1) 30%,rgba(103,30,25,0.66) 54%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(103,30,25,1) 0%,rgba(103,30,25,1) 30%,rgba(103,30,25,0.66) 54%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#671e19', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+
+	bottom: 0;
+  color: #fff;
+  padding: 10px 125px 10px 10px;
+  position: absolute;
+  text-align: left;
+  text-shadow: 0 0 3px #000;
+  font-size: 25px;
+
+}
+.tagline {
+  background: rgba(125, 32, 28, 0.8) none repeat scroll 0 0;
+  color: #fff;
+  font-size: 31px;
+  padding: 15px;
+  text-shadow: 0 0 4px #000;
+}
+.page_link_wrap {
+	background: #f3f3f3;
+}
+.inner {
+  margin: 0 auto;
+  max-width: 570px;
+  padding: 50px 20px;
+}
+.container.sponsors .inner {
+	max-width: 100%;
+}
+.aboutus {
+  line-height: 1.3;
+  margin: 65px auto;
+  max-width: 525px;
+}
+.aboutus h3 {
+  color: #7d1a0f;
+  font-size: 24px;
+  margin: 0 auto 30px;
+}
+.aboutus h4 {
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+.aboutus p {
+  margin-bottom: 20px;
+}
+.page_link_wrap {
+  background: #f3f3f3 none repeat scroll 0 0;
+  padding: 50px 0 0;
+}
+
+.page_link {
+  float: left;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 225px;
+}
+.page_link:nth-child(2n) {
+  float: right;
+}
+
+.page_link .non-hover {
+  position: absolute;
+  opacity: 1;
+  transition: all 0.3s ease 0s;
+}
+.page_link:hover .non-hover {
+  opacity: 0;
+   transition: all 0.3s ease 0s;
+}
+.page_link a span,.button {
+	cursor: pointer;
+	color: #fff;
+    display: block;
+    font-size: 17px;
+    margin: 20px 15px;
+    padding: 8px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7b1d1a+0,8e2717+48,7b1d1a+100 */
+background: #7b1d1a; /* Old browsers */
+background: -moz-linear-gradient(top,  #7b1d1a 0%, #8e2717 48%, #7b1d1a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #7b1d1a 0%,#8e2717 48%,#7b1d1a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #7b1d1a 0%,#8e2717 48%,#7b1d1a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7b1d1a', endColorstr='#7b1d1a',GradientType=0 ); /* IE6-9 */
+}
+
+.testimonial {
+  line-height: 1.3;
+  margin-bottom: 40px;
+}
+.testimonial > h3 {
+  color: #7d1a0f;
+  display: block;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.testimonial p {
+  display: inline;
+}
+.testimonial iframe {width: 100%;min-height: 300px}
+
+.testimonial blockquote {
+  background-image: url("images/quote-start.jpg");
+  background-position: left top;
+  background-repeat: no-repeat;
+  font: 18px/30px normal Tahoma,sans-serif;
+  margin: 5px;
+  padding-left: 30px;
+}
+.testimonial blockquote p {
+  background-image: url("images/quote-end.jpg");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.sponsor {
+  float: left;
+  margin-bottom: 50px;
+  text-align: center;
+  width: 33.33%;
+}
+.reason-number {
+  color: #c2c0c0;
+  display: block;
+  font-size: 90px;
+  margin-bottom: -44px;
+  text-align: center;
+  width: 100%;
+}
+.reason-name {
+  color: #7d1a0f;
+  display: block;
+  font-size: 30px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.reason_excerpt, .reason_content {
+  margin: 0 auto;
+  max-width: 525px;
+  text-align: center;
+}
+.reason_excerpt .button {
+  display: inline-block;
+  padding: 8px 15px;
+}
+.reason_content {
+  text-align: left;
+}
+.speaker {
+  float: left;
+  font-size: 16px;
+  text-align: center;
+  width: 33.33%;
+}
+.speaker p {
+  margin-bottom: 10px;
+}
+.day_icon {
+  background: rgba(0, 0, 0, 0) url("images/agenda-calendar.jpg") no-repeat scroll 0 0;
+  height: 41px;
+  margin: 0 auto 15px;
+  width: 37px;
+}
+.day_icon > span {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: bold;
+  position: relative;
+  top: 13px;
+}
+
+.day_name {
+  color: #7d1a0f;
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+.speaker_name {
+  font-size: 18px;
+  color: #7d1a0f;
+}
+.speaker_title{margin-bottom: 15px}
+
+
+.agenda_testimonial {
+  margin: 50px auto;
+  max-width: 750px;
+}
+
+.agenda_testimonial .left {float: left;width: 50%}
+.agenda_testimonial .right {
+  float: right;
+  text-align: right;
+  transform: rotate(5deg);
+  width: 50%;
+}
+.agenda_testimonial p:first-child {
+  margin-bottom: 20px;
+}
+
+
+
+
+.footer {
+  padding: 10px;
+  text-align: center;
+}
