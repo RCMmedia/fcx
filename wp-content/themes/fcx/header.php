@@ -33,7 +33,7 @@
 	<span class="event-privacy">Pre-approved Attendees Only</span>
 	<span class="event-phonenumber"><a href="tel:7144341516">714.434.1516</a></span>
 	<span class="event-email"><a href="mailto:Info@FranchiseCapitalExchange.com">Info@FranchiseCapitalExchange.com</a></span>
-	<a class="button-register button" href="">Register <span style="font-size: 12px; display: inline;">&#9654;</span></a>
+	<a class="button-register button" href="<?php bloginfo('url') ?>/register">Register <span style="font-size: 12px; display: inline;">&#9654;</span></a>
 </div><!-- #sidebar -->
 
 <div id="content">
