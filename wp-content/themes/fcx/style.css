@@ -8,7 +8,7 @@ License: Private
 
 
 /* Reset CSS */
-*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+*,:before,:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}
 blockquote,q{quotes:none}
@@ -70,7 +70,7 @@ body.home .nav-wrap.fixed .logo {
 .nav-wrap {
   height: 65px;
   position: relative;
-  z-index: 100;
+  z-index: 500;
 }
 .nav-wrap .logo {
   margin-left: 20px;
@@ -142,6 +142,7 @@ body.home .nav-wrap.fixed .logo {
 #sidebar {
   background: rgba(0, 0, 0, 0) url("images/bg-sidebar.jpg") repeat scroll 0 0 / cover ;
   height: 100vh;
+  font-family: 'Montserrat', sans-serif;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -153,7 +154,7 @@ body.home .nav-wrap.fixed .logo {
   display: block;
   margin-bottom: 20px;
 }
-#sidebar a {
+#sidebar a, #sidebar a span {
   color: #fff;
 }
 .event-date {
@@ -257,6 +258,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#671e19', end
    transition: all 0.3s ease 0s;
 }
 .page_link a span,.button {
+	-webkit-appearance: none;
 	cursor: pointer;
 	color: #fff;
     display: block;
@@ -269,8 +271,12 @@ background: -moz-linear-gradient(top,  #7b1d1a 0%, #8e2717 48%, #7b1d1a 100%); /
 background: -webkit-linear-gradient(top,  #7b1d1a 0%,#8e2717 48%,#7b1d1a 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom,  #7b1d1a 0%,#8e2717 48%,#7b1d1a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7b1d1a', endColorstr='#7b1d1a',GradientType=0 ); /* IE6-9 */
+transition: all 0.3s ease 0s;
 }
-
+.page_link a span:hover {
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease 0s;
+}
 .testimonial {
   line-height: 1.3;
   margin-bottom: 40px;
@@ -409,7 +415,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7b1d1a', end
   text-align: center;
 }
 
-
+/* overlay styles */
+.overlay_wrap {
+  background: rgba(0, 0, 0, .8) ;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  transition: all 0.5s ease 0s;
+  visibility: hidden;
+  width: 100%;
+  z-index: 400;
+}
+.overlay_wrap.active {
+  opacity: 1;
+  padding-top: 115px;
+  transition: all 0.5s ease 0s;
+  visibility: visible;
+}
+.overlay_wrap .page_link {
+  float: none;
+}
+.overlay_inner {
+  margin: 0 auto;
+  width: 225px;
+}
 
 /* Media queries */
 @media screen and (max-width: 700px) {
@@ -438,7 +470,11 @@ body.admin-bar #sidebar {top: 0}
 }
 #sidebar span,#sidebar .event-email a, #sidebar .event-phonenumber a {color: #000}
 .event-date,.event-location,.event-privacy,.event-phonenumber,.event-email {color: #000}
-
+.nav-wrap.fixed #nav-icon {
+  float: right;
+  margin-right: 15px;
+  position: relative;
+}
 .aboutus {
   line-height: 1.3;
   margin: 25px auto;
@@ -452,7 +488,7 @@ body.admin-bar #sidebar {top: 0}
 	.logo-big {
   display: none;
 }
-.logo-small {
+.nav-wrap .logo-small {
   display: block;
 }
 	.page_link {width: 100%}
