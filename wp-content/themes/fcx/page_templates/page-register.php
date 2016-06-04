@@ -24,7 +24,7 @@ get_header(); ?>
  						<?php		} else {  ?>
 						
  						<!-- password good -->
- 						password good, display what you want
+ 						<div style="width:300px;margin:0 auto"><a class="button" href="http://ootbapps.com/fce/" target="_blank">Complete registration</a></div>
  						
 						
 	 					<?php	} ?>

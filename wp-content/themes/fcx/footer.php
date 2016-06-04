@@ -40,6 +40,7 @@
 //overlay functions
 $(document).on("click", ".trigger-overlay", function () {
 	$('.overlay_wrap').toggleClass('active');
+	$('.nav-wrap').toggleClass('overlay-open');
 }); 
 	
 /*
@@ -62,22 +63,34 @@ $(window).scroll(function(){
 var mod = function(){
 		if (Modernizr.mq('(max-width: 700px)')) {
 	  	$( "#sidebar" ).insertAfter( $( ".header-wrap" ) );
-	        
+	    
+	    var topofDiv = $(".nav-wrap").offset().top; //gets offset of header
+			var height = $(".nav-wrap").outerHeight(); //gets height of header
+
+			$(window).scroll(function(){
+			    if($(window).scrollTop() > (topofDiv + height)){
+			       $('.nav-wrap').addClass('fixed');
+			    }
+			    else{
+			       $('.nav-wrap').removeClass('fixed');
+			    }
+			});
+			    
 	  } else {
 	  	// Clear the settings etc
 	  	$( "#sidebar" ).insertBefore( $( "#content" ) );
 	  	
 	  	var topofDiv = $(".header").offset().top; //gets offset of header
-var height = $(".header").outerHeight(); //gets height of header
+			var height = $(".header").outerHeight(); //gets height of header
 
-$(window).scroll(function(){
-    if($(window).scrollTop() > (topofDiv + height)){
-       $('.nav-wrap').addClass('fixed');
-    }
-    else{
-       $('.nav-wrap').removeClass('fixed');
-    }
-});
+			$(window).scroll(function(){
+			    if($(window).scrollTop() > (topofDiv + height)){
+			       $('.nav-wrap').addClass('fixed');
+			    }
+			    else{
+			       $('.nav-wrap').removeClass('fixed');
+			    }
+			});
 	  }
 	}
 	
@@ -90,7 +103,16 @@ $(window).scroll(function(){
 	});
 </script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-59242041-10', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <?php wp_footer(); ?>
 </body>
 </html>

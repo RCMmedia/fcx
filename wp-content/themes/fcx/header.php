@@ -43,7 +43,7 @@
 		<div class="logo">
 			<a href="<?php bloginfo('url') ?>">
 				<img class="logo-big" src="<?php bloginfo('template_url') ?>/images/logo-sm.png" alt="logo-sm" width="382" height="34">
-				<img class="logo-small" src="<?php bloginfo('template_url') ?>/images/logo-mobile.jpg" alt="logo-mobile" >
+				<img class="logo-small" src="<?php bloginfo('template_url') ?>/images/logo-mobile.png" alt="logo-mobile" >
 			</a>
 		</div><!-- .logo -->
 		
@@ -60,7 +60,7 @@
 			<?php if (is_front_page() ){ ?>
 				<img src="<?php bloginfo('template_url') ?>/images/banner-home-inner.png" alt="banner-home-inner" width="411" height="252">
 				<div class="tagline">
-					Your Future Starts Here
+					Your Future Starts&nbsp;Here
 				</div><!-- .tagline -->
 			<?php	} else { ?>
 			
