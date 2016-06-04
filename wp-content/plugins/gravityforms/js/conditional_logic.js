@@ -1,8 +1,16 @@
 
 var __gf_timeout_handle;
 
+gform.addAction( 'gform_input_change', function( elem, formId, fieldId ) {
+	var dependentFieldIds = rgars( gf_form_conditional_logic, [ formId, 'fields', fieldId ].join( '/' ) );
+	if( dependentFieldIds ) {
+		gf_apply_rules( formId, dependentFieldIds );
+	}
+}, 10 );
+
 function gf_apply_rules(formId, fields, isInit){
 	var rule_applied = 0;
+	jQuery(document).trigger( 'gform_pre_conditional_logic', [ formId, fields, isInit ] );
 	for(var i=0; i < fields.length; i++){
 		gf_apply_field_rule(formId, fields[i], isInit, function(){
 			rule_applied++;
@@ -128,8 +136,8 @@ function gf_is_match(formId, rule){
 				fieldValue = gformCleanNumber( fieldValue, '', '', decimalSeparator);
 
 				//now transform to number specified by locale
-				if(window['gf_number_format'] && window['gf_number_format'] == "decimal_comma")
-					fieldValue = gformFormatNumber(fieldValue, -1, ",", ".");
+				//if(window['gf_number_format'] && window['gf_number_format'] == "decimal_comma")
+				//	fieldValue = gformFormatNumber(fieldValue, -1, ",", ".");
 
 				if( ! fieldValue )
 					fieldValue = 0;
@@ -151,11 +159,16 @@ function gf_is_match(formId, rule){
 }
 
 function gf_try_convert_float(text){
-	var format = window["gf_number_format"] == "decimal_comma" ? "decimal_comma" : "decimal_dot";
 
-	if(gformIsNumeric(text, format)){
+	/*
+	 * The only format that should matter is the field format. Attempting to do this by WP locale creates a lot of issues with consistency.
+	 * var format = window["gf_number_format"] == "decimal_comma" ? "decimal_comma" : "decimal_dot";
+	 */
+
+    var format = 'decimal_dot';
+	if( gformIsNumeric( text, format ) ) {
 		var decimal_separator = format == "decimal_comma" ? "," : ".";
-		return gformCleanNumber(text, "", "", decimal_separator);
+		return gformCleanNumber( text, "", "", decimal_separator );
 	}
 
 	return text;
@@ -222,12 +235,15 @@ function gf_do_field_action(formId, action, fieldId, isInit, callback){
 
 	for(var i=0; i < dependent_fields.length; i++){
 		var targetId = fieldId == 0 ? "#gform_submit_button_" + formId : "#field_" + formId + "_" + dependent_fields[i];
+        var defaultValues = conditional_logic["defaults"][dependent_fields[i]];
 
-		//calling callback function on the last dependent field, to make sure it is only called once
+        //calling callback function on the last dependent field, to make sure it is only called once
 		do_callback = (i+1) == dependent_fields.length ? callback : null;
 
-		gf_do_action(action, targetId, conditional_logic["animation"], conditional_logic["defaults"][dependent_fields[i]], isInit, do_callback);
-	}
+		gf_do_action(action, targetId, conditional_logic["animation"], defaultValues, isInit, do_callback);
+
+        gform.doAction('gform_post_conditional_logic_field_action', formId, action, targetId, defaultValues, isInit);
+    }
 }
 
 function gf_do_next_button_action(formId, action, fieldId, isInit){
@@ -255,13 +271,15 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 			}
 		}
 		else{
-			//$target.show();
-			//Getting around an issue with Chrome on Android. Does not like jQuery('xx').show() ...
-			if ($target.is('.gf_inline, input.button')) {
-				$target.css('display', 'inline-block');
-			} else {
-				$target.css('display', 'block');
+
+			var display = $target.data('gf_display');
+
+			//defaults to list-item if previous (saved) display isn't set for any reason
+			if ( display == '' || display == 'none' ){
+				display = 'list-item';
 			}
+
+			$target.css('display', display);
 
 			if(callback){
 				callback();
@@ -269,6 +287,7 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 		}
 	}
 	else{
+
 		//if field is not already hidden, reset its values to the default
 		var child = $target.children().first();
 		if (child.length > 0){
@@ -282,6 +301,11 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 			$select = jQuery( this );
 			$select.data( 'tabindex', $select.attr( 'tabindex' ) ).removeAttr( 'tabindex' );
 		} );
+
+		//Saving existing display so that it can be reset when showing the field
+		if( ! $target.data('gf_display') ){
+			$target.data('gf_display', $target.css('display'));
+		}
 
 		if(useAnimation && !isInit){
 			if($target.length > 0 && $target.is(":visible")) {
@@ -299,20 +323,33 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 }
 
 function gf_reset_to_default(targetId, defaultValue){
-	var dateFields = jQuery(targetId).find('.gfield_date_month input[type="text"], .gfield_date_day input[type="text"], .gfield_date_year input[type="text"], .gfield_date_dropdown_month select, .gfield_date_dropdown_day select, .gfield_date_dropdown_year select');
-	var dateIndex = 0;
-	if(dateFields.length > 0){
-		dateFields.each(function(){
-			if(defaultValue){
-				val = defaultValue.split(/[\.\/-]+/)[dateIndex];
-				dateIndex++;
+
+    var dateFields = jQuery( targetId ).find( '.gfield_date_month input, .gfield_date_day input, .gfield_date_year input, .gfield_date_dropdown_month select, .gfield_date_dropdown_day select, .gfield_date_dropdown_year select' );
+	if( dateFields.length > 0 ) {
+
+		dateFields.each( function(){
+
+			var element = jQuery( this );
+
+            // defaultValue is associative array (i.e. [ m: 1, d: 13, y: 1987 ] )
+			if( defaultValue ) {
+
+                var key = 'd';
+                if (element.parents().hasClass('gfield_date_month') || element.parents().hasClass('gfield_date_dropdown_month') ){
+                    key = 'm';
+                }
+                else if(element.parents().hasClass('gfield_date_year') || element.parents().hasClass('gfield_date_dropdown_year') ){
+                    key = 'y';
+                }
+
+                val = defaultValue[ key ];
+
 			}
 			else{
 				val = "";
 			}
 
-			var element = jQuery(this);
-			if(element.prop("tagName") == "SELECT")
+			if(element.prop("tagName") == "SELECT" && val != '' )
 				val = parseInt(val);
 
 
@@ -336,9 +373,6 @@ function gf_reset_to_default(targetId, defaultValue){
 		var val = "";
 
 		var element = jQuery(this);
-		if(element.is('select:not([multiple])')){
-			val = element.find('option' ).not( ':disabled' ).eq(0).val();
-		}
 
 		//get name of previous input field to see if it is the radio button which goes with the "Other" text box
 		//otherwise field is populated with input field name
@@ -351,10 +385,19 @@ function gf_reset_to_default(targetId, defaultValue){
 		}
 		else if(jQuery.isPlainObject(defaultValue)){
 			val = defaultValue[element.attr("name")];
+            if( ! val ) {
+                // 'input_123_3_1' => '3.1'
+                var inputId = element.attr( 'id' ).split( '_' ).slice( 2 ).join( '.' );
+                val = defaultValue[ inputId ];
+            }
 		}
 		else if(defaultValue){
 			val = defaultValue;
 		}
+
+        if( element.is('select:not([multiple])') && ! val ) {
+            val = element.find( 'option' ).not( ':disabled' ).eq(0).val();
+        }
 
 		if(element.val() != val) {
 			element.val(val).trigger('change');
@@ -371,7 +414,7 @@ function gf_reset_to_default(targetId, defaultValue){
 	});
 
 	//checkboxes and radio buttons
-	var elements = jQuery(targetId).find('input[type="radio"], input[type="checkbox"]');
+	var elements = jQuery(targetId).find('input[type="radio"], input[type="checkbox"]:not(".copy_values_activated")');
 
 	elements.each(function(){
 
