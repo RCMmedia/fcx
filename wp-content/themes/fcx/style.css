@@ -70,7 +70,6 @@ body.home .nav-wrap.fixed .logo {
 .nav-wrap {
   height: 65px;
   position: relative;
-  z-index: 500;
 }
 .nav-wrap .logo {
   margin-left: 20px;
@@ -79,6 +78,11 @@ body.home .nav-wrap.fixed .logo {
   position: absolute;
 /*   transition: all 0.3s ease-in-out 0s; */
 }
+/*
+.nav-wrap.overlay-open .logo {
+	opacity: 0;
+}
+*/
 .nav-wrap .logo-small {display: none;}
 .nav-wrap.fixed .logo {
   display: inline-block;
@@ -121,6 +125,7 @@ body.home .nav-wrap.fixed .logo {
   transform: rotate(0deg);
   transition: all 0.5s ease-in-out 0s;
   width: 45px;
+  z-index: 1000;
 }
 #nav-icon span {
   background: #000 none repeat scroll 0 0;
@@ -132,6 +137,9 @@ body.home .nav-wrap.fixed .logo {
   transform: rotate(0deg);
   transition: all 0.25s ease-in-out 0s;
   width: 100%;
+}
+#nav-icon.open span {
+  background: #fff none repeat scroll 0 0;
 }
 #nav-icon span:nth-child(1){top:0}
 #nav-icon span:nth-child(2){top:11px}
@@ -465,8 +473,13 @@ transition: all 0.3s ease 0s;
   width: 225px;
 }
 
+@media screen and (max-width: 860px) {
+	.sponsor {
+  width: 50%;
+	}
+} /* end 860px */
 /* Media queries */
-@media screen and (max-width: 735px) {
+@media screen and (max-width: 740px) {
 	body.admin-bar #sidebar,body.admin-bar .nav-wrap.fixed {top:0px}
 .logo-big {
   height: auto;
@@ -516,8 +529,19 @@ body.admin-bar #sidebar {top: 0}
   text-align: center;
   width: 50%;
 }
-
+.page_title {
+  background: rgba(103, 30, 25, 1) none repeat scroll 0 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 25px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  text-shadow: 0 0 3px #000;
+  width: 100%;
 }
+
+} /* end 740px */
 
 @media screen and (max-width: 530px) {
 	.logo-big {
@@ -526,12 +550,13 @@ body.admin-bar #sidebar {top: 0}
 .nav-wrap .logo-small {
   display: block;
 }
-	.page_link {width: 100%}
-	.nav-wrap.fixed #nav-icon {
+.page_link {width: 100%}
+.nav-wrap.fixed #nav-icon {
   float: right;
   margin-right: 10px;
   position: relative;
 }
+
 .page_title {
   font-size: 22px;
   padding: 10px 35px 10px 10px;
@@ -540,6 +565,9 @@ body.admin-bar #sidebar {top: 0}
   float: none;
   width: 100%;
 }
+.sponsor {
+  width: 100%;
+	}
 .agenda_testimonial .left {
   float: none;
   width: 100%;
@@ -552,4 +580,4 @@ body.admin-bar #sidebar {top: 0}
   width: 100%;
 }
 	
-}
+} /* end 530px */

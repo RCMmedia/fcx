@@ -5,6 +5,7 @@
 </div><!-- .content opened on header.php -->
 
 <div class="overlay_wrap">
+	
 	<div class="overlay_inner">
 
 		<?php if( have_rows('home_page_links', 8) ): ?>
@@ -61,7 +62,7 @@ $(window).scroll(function(){
 
 //responsive JS with modernizer
 var mod = function(){
-		if (Modernizr.mq('(max-width: 700px)')) {
+		if (Modernizr.mq('(max-width: 740px)')) {
 	  	$( "#sidebar" ).insertAfter( $( ".header-wrap" ) );
 	    
 	    var topofDiv = $(".nav-wrap").offset().top; //gets offset of header

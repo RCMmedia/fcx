@@ -7,7 +7,8 @@
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  -->
+<script src="<?php bloginfo('template_url') ?>/js/jquery.js"></script>
 <script src="<?php bloginfo('template_url') ?>/js/modernizr.js"></script> 
 <script src="<?php bloginfo('template_url') ?>/js/headhesive.min.js"></script> 
 
