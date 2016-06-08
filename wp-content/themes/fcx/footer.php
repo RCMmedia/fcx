@@ -50,6 +50,7 @@
 	
 }); // end document ready
 
+
 //overlay functions
 $(document).on("click", ".trigger-overlay", function () {
 	$('.overlay_wrap').toggleClass('active');
