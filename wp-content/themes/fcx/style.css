@@ -97,6 +97,7 @@ body.home .nav-wrap.fixed .logo {
   width: 100%;
   top:0px;
   transition: all 0.3s ease-in-out 0s;
+  z-index: 100
 }
 /*
 .nav-wrap.fixed.overlay-open {
