@@ -5,6 +5,11 @@
 </div><!-- .content opened on header.php -->
 
 <div class="overlay_wrap">
+	<div id="nav-icon" class="trigger-overlay overlay-trigger">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+		</div><!-- #nav-icon -->
 	
 	<div class="overlay_inner">
 
@@ -26,7 +31,14 @@
 <script>
 	$(document).ready(function(){
 	$('#nav-icon').click(function(){
-		$(this).toggleClass('open');
+		$('#nav-icon').toggleClass('open');
+		$('.overlay-trigger').toggleClass('open');
+		
+	});
+	$('.overlay-trigger').click(function(){
+		$('#nav-icon').removeClass('open');
+		$('.overlay-trigger').removeClass('open');
+		
 	});
 	
 	$('.reason').click(function(){
