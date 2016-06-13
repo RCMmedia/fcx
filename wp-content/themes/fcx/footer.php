@@ -27,7 +27,7 @@
 		
 	</div>
 	<div class="privacy-policy">
-		<a href="">Private Policy</a>
+		<a href="<?php bloginfo('url') ?>/private/">Private Policy</a>
 	</div>
 </div>
 
