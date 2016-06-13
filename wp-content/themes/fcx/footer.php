@@ -26,17 +26,20 @@
 		<?php endif; ?>
 		
 	</div>
+	<div class="privacy-policy">
+		<a href="">Private Policy</a>
+	</div>
 </div>
 
 <script>
 	$(document).ready(function(){
 	$('#nav-icon').click(function(){
-		$('#nav-icon').toggleClass('open');
+		$('#content #nav-icon').hide('open');
 		$('.overlay-trigger').toggleClass('open');
 		
 	});
 	$('.overlay-trigger').click(function(){
-		$('#nav-icon').removeClass('open');
+		$('#content #nav-icon').show('');
 		$('.overlay-trigger').removeClass('open');
 		
 	});
@@ -46,10 +49,7 @@
 		$(this).find('span.button').fadeOut();
 	});
 	
-	
-	
 }); // end document ready
-
 
 //overlay functions
 $(document).on("click", ".trigger-overlay", function () {
@@ -57,21 +57,6 @@ $(document).on("click", ".trigger-overlay", function () {
 	$('.nav-wrap').toggleClass('overlay-open');
 }); 
 	
-/*
-// do something after scrolling past header
-var bottom = $('.header-wrap').offset().top;
-$(window).scroll(function(){    
-	if ($(this).scrollTop() > bottom){ 
-		$('.nav-wrap').addClass('fixed'); 
-	}
-	else{
-		$('.nav-wrap').removeClass('fixed');
-	}
-});
-*/
-
-
-
 
 //responsive JS with modernizer
 var mod = function(){

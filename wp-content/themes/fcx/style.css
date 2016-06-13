@@ -343,12 +343,17 @@ transition: all 0.3s ease 0s;
   background-repeat: no-repeat;
   display: block;
 }
-
 .sponsor {
   float: left;
-  margin-bottom: 50px;
+  height: 120px;
+  margin-bottom: 7%;
+  padding: 2%;
   text-align: center;
   width: 33.33%;
+}
+.sponsor > img {
+  max-height: 200px;
+  width: 100%;
 }
 .reason-number {
   color: #c2c0c0;
@@ -449,7 +454,17 @@ transition: all 0.3s ease 0s;
   padding: 10px;
   text-align: center;
 }
-
+#container .page_link:last-child {
+  display: none;
+}
+.privacy-policy {
+  bottom: 0;
+  padding: 20px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.privacy-policy a {color:#8b2518}
 /* overlay styles */
 .overlay_wrap {
   background: rgba(0, 0, 0, .8) ;
